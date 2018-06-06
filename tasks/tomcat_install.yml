@@ -3,11 +3,14 @@
   script: tomcat_find_latest_version.py {{ tomcat_version }}
   register: tomcat_download_link
 
+- debug:
+    msg: "{{ tomcat_download_link.stdout.strip().split('/')[-1] }}"
+
 # get exact archivename from prev step and use it here.
 - name: Download tomcat_distro.
   get_url:
-    url: "{{ tomcat_download_link.stdout }}"
-    dest: "/tmp/apache-tomcat-{{tomcat_version}}.tar.gz"
+    url: "{{ tomcat_download_link.stdout.split() }}"
+    dest: "/tmp/{{ tomcat_download_link.stdout.strip().split('/')[-1] }}" 
     mode: 0440
         
 - name: Untar tomcat. 
