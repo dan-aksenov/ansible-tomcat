@@ -8,8 +8,9 @@
 - import_tasks: tomcat_install.yml
   tags: tomcat_install
 
-- import_tasks: postgres_jdbc.yml
-  tags: postgres_jdbc
+# to be fixed with latest driver
+#- import_tasks: postgres_jdbc.yml
+#  tags: postgres_jdbc
 
-- import_tasks: logrotate.yml
-  tags: logrotate_catalina
+#- import_tasks: logrotate.yml
+#  tags: logrotate_catalina
