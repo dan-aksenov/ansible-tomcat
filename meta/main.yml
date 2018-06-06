@@ -3,8 +3,9 @@ galaxy_info:
   description: Tomcat installation and basic setup.
   license: as-is
   platforms:
-      name: EL
-      versions: 7
+    - name: EL
+      versions:
+      - 7
   categories:
    - application
    - application:java
