@@ -1,5 +1,4 @@
 ---
-
 - import_tasks: add_user.yml
   tags: tomcat_user
 
@@ -14,5 +13,3 @@
 
 - import_tasks: logrotate.yml
   tags: logrotate_catalina
-
-...
