@@ -6,4 +6,7 @@ galaxy_info:
       name: EL
       versions: 7
   categories:
+   - application
+   - application:java
+   - application:tomcat
   dependencies:
