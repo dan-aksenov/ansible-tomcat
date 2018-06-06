@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # find apache latest version
 # inspired by https://github.com/galaxyproject/ansible-postgresql/blob/master/files/get_repo_rpm_release.py
 # so far tested on tomcat 7,8 and 9
