@@ -4,7 +4,7 @@
   register: tomcat_download_link
 
 - name: Register tomcat's name.
-  set_fact: tomcat_name = "{{ tomcat_download_link.stdout.strip().split('/')[-1].split('.tar.gz')[0] }}"
+  set_fact: tomcat_name="{{ tomcat_download_link.stdout.strip().split('/')[-1].split('.tar.gz')[0] }}"
 
 - name: Download tomcat_distro.
   get_url:
