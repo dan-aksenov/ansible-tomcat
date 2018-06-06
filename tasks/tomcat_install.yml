@@ -1,22 +1,14 @@
 ---
-- name: Create directory for tomcat stuff.
-  file: # change it
-    path: "{{ tomcat_dir }}/logs" 
-    state: directory
-    owner: "{{ tomcat_user }}"
-    group: "{{ tomcat_user }}"
-    mode: 0755
-
 - name: Determine latest tomcat build for given version.
   script: tomcat_find_latest_version.py {{ tomcat_version }}
   register: tomcat_download_link
 
+# get exact archivename from prev step and use it here.
 - name: Download tomcat_distro.
   get_url:
     url: "{{ tomcat_download_link.stdout }}"
     dest: "/tmp/apache-tomcat-{{tomcat_version}}.tar.gz"
     mode: 0440
-  register: tar_name
         
 - name: Untar tomcat. 
   unarchive:
@@ -36,16 +28,6 @@
     force: yes
     mode: 0644
   when: ansible_service_mgr == 'systemd'
-
-- name: Create init file for tomcat.
-  template:
-    src: tomcat.initd.j2
-    dest: "/etc/init.d/tomcat"
-    owner: root
-    group: root
-    force: yes
-    mode: 0755
-  when: ansible_service_mgr == 'sysvinit'
 
 - name: Setup tomcat manager interface (tomcat_users).
   template:
