@@ -3,20 +3,19 @@
   script: tomcat_find_latest_version.py {{ tomcat_version }}
   register: tomcat_download_link
 
-- debug:
-    msg: "{{ tomcat_download_link.stdout.strip().split('/')[-1] }}"
+- name: Register tomcat's name.
+  set_fact: tomcat_name = "{{ tomcat_download_link.stdout.strip().split('/')[-1].split('.tar.gz')[0] }}"
 
-# get exact archivename from prev step and use it here.
 - name: Download tomcat_distro.
   get_url:
-    url: "{{ tomcat_download_link.stdout.split() }}"
+    url: "{{ tomcat_download_link.stdout }}"
     dest: "/tmp/{{ tomcat_download_link.stdout.strip().split('/')[-1] }}" 
-    mode: 0440
-        
+    mode: 0440        
+
 - name: Untar tomcat. 
   unarchive:
-    src: "/tmp/apache-tomcat-{{tomcat_version}}.tar.gz"
-    dest: "{{ tomcat_dir }}"
+    src: "/tmp/{{ tomcat_download_link.stdout.strip().split('/')[-1] }}"
+    dest: "/opt"
     remote_src: True
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_user }}"
@@ -35,7 +34,7 @@
 - name: Setup tomcat manager interface (tomcat_users).
   template:
     src: tomcat_users.j2
-    dest: "{{ tomcat_dir }}/conf/tomcat-users.xml"
+    dest: "/opt/{{ tomcat_name }}/conf/tomcat-users.xml"
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_user }}"
     force: yes
@@ -44,7 +43,7 @@
 - name: Setup tomcat manager interface (manager context).
   template:
     src: manager_context.j2
-    dest: "{{ tomcat_dir }}/webapps/manager/META-INF/context.xml"
+    dest: "/opt/{{ tomcat_name }}//webapps/manager/META-INF/context.xml"
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_user }}"
     force: yes
@@ -61,8 +60,3 @@
     daemon_reload: yes
     enabled: yes
   when: ansible_service_mgr == 'systemd'
-
-#Currently bug sort of https://github.com/ansible/ansible/issues/30192
-- name: Start and enable tomcat for sysvinit.
-  command: service tomcat start && checkonfig tomcat on
-  when: ansible_service_mgr == 'sysvinit'
