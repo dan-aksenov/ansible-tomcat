@@ -1,17 +1,24 @@
 ---
 - name: Create directory for tomcat stuff.
-  file:
+  file: # change it
     path: "{{ tomcat_dir }}/logs" 
     state: directory
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_user }}"
     mode: 0755
 
-- name: Copy tomcat from local repo.
-  copy: src={{ item }}
-        dest=/tmp
-  with_items:
-        - "~/localrepo/apache-tomcat-{{ tomcat_version }}.tar.gz"
+- name: Determine latest tomcat build for given version.
+  script: tomcat_find_latest_version.py {{ tomcat_version }}
+  register: tomcat_download_link
+  when: repo_pkg_installed.failed is defined and repo_pkg_installed.failed
+  delegate_to: localhost
+
+- name: Download foo.conf
+  get_url:
+    url: {{ tomcat_download_link }}
+    dest: /tmp/
+    mode: 0440
+  register: tar_name
         
 - name: Untar tomcat. 
   unarchive:
