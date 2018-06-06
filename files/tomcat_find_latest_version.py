@@ -19,7 +19,7 @@ except urllib2.HTTPError, e:
 
 re_match = '[\'"]v' + major_verion +'.*[\'"]'
 latest_version = max(re.findall(re_match,distro.read(),flags=re.I))
-get_latest_url = "http://apache-mirror.rbc.ru/pub/apache/tomcat/tomcat-" + major_verion + "/" + latest_version.strip('\"') + "bin/apache-tomcat-" + latest_version.strip('\"v/') + "-deployer.tar.gz"
+get_latest_url = "http://apache-mirror.rbc.ru/pub/apache/tomcat/tomcat-" + major_verion + "/" + latest_version.strip('\"') + "bin/apache-tomcat-" + latest_version.strip('\"v/') + ".tar.gz"
 
 print get_latest_url
 sys.exit(0)
