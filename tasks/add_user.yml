@@ -5,4 +5,3 @@
     createhome: no
     shell: "/sbin/nologin"
     state: present
-  when: ansible_service_mgr == 'systemd'
