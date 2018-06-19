@@ -5,21 +5,8 @@
 - import_tasks: java_install.yml
   tags: java_install
 
-- name: Determine latest tomcat build for given version.
-  script: tomcat_find_latest_version.py {{ tomcat_version }}
-  register: tomcat_download_link
-
-- name: Register tomcat's name.
-  set_fact: tomcat_name="{{ tomcat_download_link.stdout.strip().split('/')[-1].split('.tar.gz')[0] }}"
-
-- name: Check if tomcat is already installed.
-  stat:
-    path: "/opt/{{ tomcat_name }}"
-  register: tcat_dir
-
 - import_tasks: tomcat_install.yml
   tags: tomcat_install
-  when: tcat_dir.stat.isdir is not defined       
 
 # to be fixed with latest driver
 #- import_tasks: postgres_jdbc.yml
