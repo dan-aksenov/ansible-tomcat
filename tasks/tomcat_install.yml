@@ -54,6 +54,16 @@
     force: yes
     mode: 0644
 
+- name: Determine latest postgresql jdbc driver version.
+  script: postgres_jdbc_find_latest_verion.py
+  register: postgres_jdbc_download_link
+
+- name: Download postgresql jdbc driver.
+  get_url:
+    url: "{{ postgres_jdbc_download_link.stdout }}"
+    dest: "/opt/{{ tomcat_name }}/lib" 
+    mode: 0440
+
 - name: Add firewall exception. If firewall is on.
   firewalld: port=8080/tcp permanent=true state=enabled immediate=yes
   ignore_errors: yes
