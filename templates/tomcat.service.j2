@@ -11,9 +11,6 @@ Environment=JAVA_HOME=/usr/lib/jvm/jre
 Environment=CATALINA_PID=/opt/{{ tomcat_name }}/temp/tomcat.pid
 Environment=CATALINA_HOME=/opt/{{ tomcat_name }}
 Environment=CATALINA_BASE=/opt/{{ tomcat_name }}
-Environment='CATALINA_OPTS=-Xms{{ (ansible_memory_mb.real.total/2) |round|int }}M -Xmx{{ (ansible_memory_mb.real.total/2) |round|int }}M -server -XX:+UseParallelGC -Djava.net.preferIPv4Addresses=true'
-Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -Djava.net.preferIPv4Addresses=true -Djava.rmi.server.hostname={{ ansible_default_ipv4.address }} -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=12345 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false'
-
 ExecStart=/opt/{{ tomcat_name }}/bin/startup.sh
 ExecStop=/bin/kill -15 $MAINPID
 

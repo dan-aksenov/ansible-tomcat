@@ -3,9 +3,8 @@
 tomcat_user: tomcat
 tomcat_version: 8
 #tomcat_dir: /opt/apache-tomcat-{{ tomcat_version }}
-#java_version: 1.{{ java_major_v }}.0_{{ java_minor_v }}
-#java_major_v: 8
-#ava_minor_v: 141
+tomcatXmx: "{{ (ansible_memory_mb.real.total/2) |round|int }}M"
+tomcatXms: "{{ (ansible_memory_mb.real.total/2) |round|int }}M"
 root_dir: /opt
 manager_user: "{{ tomcat_user }}"
 manager_password: "s3cret"
