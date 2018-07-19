@@ -1,25 +1,21 @@
 export CATALINA_OPTS="\
- -Djava.net.preferIPv4Stack=true \
- -Djava.net.preferIPv4Addresses=true \
- -Dwicket.configuration=deployment \
- -Djava.awt.headless=true \
- -Djava.security.egd=file:/dev/./urandom \
- -Xmx{{ tomcatXms }} \
- -Xms{{ tomcatXms }} \
- -server \
- -XX:+UseParallelGC \
- -Dcom.sun.management.jmxremote \
- -Djava.rmi.server.hostname={{ ansible_default_ipv4.address }} \
- -Dcom.sun.management.jmxremote.port=12345 \
- -Dcom.sun.management.jmxremote.ssl=false \
- -Dcom.sun.management.jmxremote.authenticate=false \
- -Dperson.personal.enable=true \
- -Dpassport.owner.enable=true \
- -Dintegration.billing.disable=false \
- -Dintegration.signVerification.disable=true \
- -Dpassport.number.fifthSymbol=1 \
+ -Djava.net.preferIPv4Stack=true\
+ -Djava.net.preferIPv4Addresses=true\
+ -Dwicket.configuration=deployment\
+ -Djava.awt.headless=true\
+ -Djava.security.egd=file:/dev/./urandom\
+ -Xmx{{ tomcatXms }}\
+ -Xms{{ tomcatXms }}\
+ -server\
+ -XX:+UseParallelGC\
+ -Dcom.sun.management.jmxremote\
+ -Djava.rmi.server.hostname={{ ansible_default_ipv4.address }}\
+ -Dcom.sun.management.jmxremote.port=12345\
+ -Dcom.sun.management.jmxremote.ssl=false\
+ -Dcom.sun.management.jmxremote.authenticate=false\
+ -Dperson.personal.enable=true\
+ -Dpassport.owner.enable=true\
+ -Dintegration.billing.disable=false\
+ -Dintegration.signVerification.disable=true\
+ -Dpassport.number.fifthSymbol=1\
 "
-
-#{{ (ansible_memory_mb.real.total/2) |round|int }}M -Xmx{{ (ansible_memory_mb.real.total/2) |round|int }}M
- 
-#Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -Djava.net.preferIPv4Addresses=true -Djava.rmi.server.hostname={{ ansible_default_ipv4.address }} '
