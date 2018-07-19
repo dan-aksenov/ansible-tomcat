@@ -27,6 +27,15 @@
     group: "{{ tomcat_user }}"
   when: tcat_dir.stat.isdir is not defined       
 
+- name: Create setenv file for tomcat.
+  template:
+    src: setenv.sh.j2
+    dest: "/opt/{{ tomcat_name }}/bin/setenv.sh"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_user }}"
+    force: yes
+    mode: 0644
+
 - name: Create systemd file for tomcat.
   template:
     src: tomcat.service.j2
