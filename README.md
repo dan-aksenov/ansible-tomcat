@@ -19,7 +19,7 @@
 ## Result:
 Apache-tomcat up and running on port 8080 with manger page and latest postgresql driver
 
-## Example Playbook
+## Example Playbook.
 
 ```
 ---
