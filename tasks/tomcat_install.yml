@@ -71,6 +71,8 @@
   get_url:
     url: "{{ postgres_jdbc_download_link.stdout }}"
     dest: "/opt/{{ tomcat_name }}/lib" 
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_user }}"
     mode: 0440
 
 - name: Add firewall exception. If firewall is on.
