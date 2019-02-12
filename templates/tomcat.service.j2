@@ -12,9 +12,8 @@ Environment=CATALINA_PID=/opt/{{ tomcat_name }}/temp/tomcat.pid
 Environment=CATALINA_HOME=/opt/{{ tomcat_name }}
 Environment=CATALINA_BASE=/opt/{{ tomcat_name }}
 ExecStart=/opt/{{ tomcat_name }}/bin/startup.sh
-ExecStop=/opt/{{ tomcat_name }}/bin/shutdown.sh
-# why MAINPID aint working?
-#ExecReload=/usr/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -15 $MAINPID
+ExecReload=/usr/bin/kill -s HUP $MAINPID
 RemainAfterExit=yes
 
 User={{ tomcat_user }}
