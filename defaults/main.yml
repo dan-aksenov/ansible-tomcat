@@ -7,4 +7,4 @@ tomcatXmx: "{{ (ansible_memory_mb.real.total/2) |round|int }}M"
 tomcatXms: "{{ (ansible_memory_mb.real.total/2) |round|int }}M"
 root_dir: /opt
 manager_user: "{{ tomcat_user }}"
-manager_password: "s3cret"
+manager_password: "welcome1"
