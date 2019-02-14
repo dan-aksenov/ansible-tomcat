@@ -1,0 +1,24 @@
+---
+- name: Setup tomcat manager interface (tomcat_users).
+  template:
+    src: tomcat_users.j2
+    dest: "/opt/{{ tomcat_name }}/conf/tomcat-users.xml"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_user }}"
+    force: yes
+    mode: 0644
+  notify:
+    - restart tomcat
+
+
+- name: Setup tomcat manager interface (manager context).
+  template:
+    src: manager_context.j2
+    dest: "/opt/{{ tomcat_name }}//webapps/manager/META-INF/context.xml"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_user }}"
+    force: yes
+    mode: 0644
+  notify:
+    - restart tomcat
+
