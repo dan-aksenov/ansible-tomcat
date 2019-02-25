@@ -42,6 +42,7 @@
     dest: "/etc/systemd/system/tomcat.service"
     owner: root
     group: root
+    backup: yes
     force: yes
     mode: 0644
 
