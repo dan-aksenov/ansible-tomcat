@@ -12,7 +12,7 @@
   tags: manager_app
 
 - import_tasks: jdbc.yml
-  tags: jdbc
+  tags: jdbc_install
 
 #- import_tasks: logrotate.yml
 #  tags: logrotate_catalina
