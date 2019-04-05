@@ -8,3 +8,4 @@ tomcatXms: "{{ (ansible_memory_mb.real.total/2) |round|int }}M"
 root_dir: /opt
 manager_user: "{{ tomcat_user }}"
 manager_password: "welcome1"
+logback_pattern: "<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>"

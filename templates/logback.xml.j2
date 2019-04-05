@@ -11,7 +11,7 @@
 </triggeringPolicy>
 <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
 <layout class="ch.qos.logback.classic.PatternLayout">
-<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+<pattern>{{ logback_pattern }}</pattern>
 </layout>
 </encoder>
 </appender>
