@@ -10,7 +10,6 @@
   notify:
     - restart tomcat
 
-
 - name: Setup tomcat manager interface (manager context).
   template:
     src: manager_context.j2
@@ -21,4 +20,3 @@
     mode: 0644
   notify:
     - restart tomcat
-
