@@ -1,8 +1,7 @@
 ---
 # This is defaults! For real variables look group var level.
 tomcat_user: tomcat
-tomcat_version: 8
-#tomcat_dir: /opt/apache-tomcat-{{ tomcat_version }}
+tomcat_version: 9
 tomcatXmx: "{{ (ansible_memory_mb.real.total/2) |round|int }}M"
 tomcatXms: "{{ (ansible_memory_mb.real.total/2) |round|int }}M"
 root_dir: /opt
@@ -10,12 +9,14 @@ manager_user: "{{ tomcat_user }}"
 manager_password: "welcome1"
 logback_pattern: "<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>"
 
+# tomcat ip ports
 tomcat_http_port: 8080
 tomcat_http_redirect_port: "-1"
 tomcat_shutdown_port: "-1"
 tomcat_ajp_port: "-1"
 tomcat_ajp_redirect_port: "-1"
 
+# datasource properties
 jdbc_resource_name: "DataSource"
 postgresql_server_and_port: "localhost:5432"
 postgresql_database: "postgres"
