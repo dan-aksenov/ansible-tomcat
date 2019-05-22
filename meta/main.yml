@@ -7,7 +7,7 @@ galaxy_info:
     - name: EL
       versions:
       - 7
-  categories:
+  galaxy_tags:
    - application
    - java
    - tomcat
