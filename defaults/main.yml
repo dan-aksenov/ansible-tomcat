@@ -9,3 +9,15 @@ root_dir: /opt
 manager_user: "{{ tomcat_user }}"
 manager_password: "welcome1"
 logback_pattern: "<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>"
+
+tomcat_http_port: 8080
+tomcat_http_redirect_port: "-1"
+tomcat_shutdown_port: "-1"
+tomcat_ajp_port: "-1"
+tomcat_ajp_redirect_port: "-1"
+
+jdbc_resource_name: "DataSource"
+postgresql_server_and_port: "localhost:5432"
+postgresql_database: "postgres"
+postgresql_user: "postgres"
+postgresql_password: "postgres"

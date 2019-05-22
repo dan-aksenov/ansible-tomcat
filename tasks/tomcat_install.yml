@@ -36,6 +36,15 @@
     force: yes
     mode: 0644
 
+- name: Create server.xml file for tomcat.
+  template:
+    src: server.xml.j2
+    dest: "/opt/{{ tomcat_name }}/conf/server.xml"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_user }}"
+    force: yes
+    mode: 0644
+
 - name: Create logback.xml for tomcat.
   template:
     src: logback.xml.j2
