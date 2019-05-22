@@ -1,7 +1,7 @@
 ---
 - name: Yum install java
   yum:
-    state: latest
+    state: present
     pkg: "{{ item }}"
   with_items:
     - java

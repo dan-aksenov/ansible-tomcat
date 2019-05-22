@@ -14,18 +14,18 @@
 - name: Download tomcat_distro.
   get_url:
     url: "{{ tomcat_download_link.stdout }}"
-    dest: "/tmp/{{ tomcat_download_link.stdout.strip().split('/')[-1] }}" 
+    dest: "/tmp/{{ tomcat_download_link.stdout.strip().split('/')[-1] }}"
     mode: 0440
-  when: tcat_dir.stat.isdir is not defined       
+  when: tcat_dir.stat.isdir is not defined
 
-- name: Untar tomcat. 
+- name: Untar tomcat.
   unarchive:
     src: "/tmp/{{ tomcat_download_link.stdout.strip().split('/')[-1] }}"
     dest: "/opt"
     remote_src: True
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_user }}"
-  when: tcat_dir.stat.isdir is not defined       
+  when: tcat_dir.stat.isdir is not defined
 
 - name: Create setenv file for tomcat.
   template:
@@ -67,7 +67,7 @@
 - name: Add firewall exception. If firewall is on.
   firewalld: port=8080/tcp permanent=true state=enabled immediate=yes
   ignore_errors: yes
-    
+
 - name: Start and enable tomcat for systemd.
   systemd:
     state: started

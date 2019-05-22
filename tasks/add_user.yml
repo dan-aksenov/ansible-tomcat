@@ -1,6 +1,6 @@
 ---
 - name: Add tomcat user.
-  user: 
+  user:
     name: "{{ tomcat_user }}"
     createhome: no
     shell: "/sbin/nologin"
