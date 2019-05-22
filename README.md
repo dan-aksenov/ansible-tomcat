@@ -32,5 +32,5 @@ Apache-tomcat up and running on port 8080 with manger page and latest postgresql
 ```
 
 ## TODO:
-[ ] fully variablize setenv to fit various projects
+- [ ] fully variablize setenv to fit various projects
 
