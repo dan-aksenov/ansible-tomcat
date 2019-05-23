@@ -15,6 +15,8 @@
 * root_dir - root direcrory for application (default - /opt)
 * manager_user - user for tomcat's manager page (default - tomcat)
 * manager_password - password for manager user (should be moved to vault)
+* catalina_opts - a hash (dictionary) of CATALINA_OPTS options and values
+* tomcat_http_port - tomcat's http port. Default is 8080. All other ports (shutdown, ajp etc) are disabled.
 
 ## Result:
 Apache-tomcat up and running on port 8080 with manger page and latest postgresql driver
@@ -32,5 +34,5 @@ Apache-tomcat up and running on port 8080 with manger page and latest postgresql
 ```
 
 ## TODO:
-- [ ] fully variablize setenv to fit various projects
+- [x] fully variablize setenv to fit various projects
 
