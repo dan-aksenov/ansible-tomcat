@@ -1,17 +1,12 @@
-export CATALINA_OPTS="\
- -Djava.net.preferIPv4Stack=true\
- -Djava.net.preferIPv4Addresses=true\
- -Dwicket.configuration=deployment\
- -Djava.awt.headless=true\
- -Djava.security.egd=file:/dev/./urandom\
- -Xmx{{ tomcatXms }}\
- -Xms{{ tomcatXms }}\
- -server\
- -XX:+UseParallelGC\
- -Dcom.sun.management.jmxremote\
- -Djava.rmi.server.hostname={{ ansible_default_ipv4.address }}\
- -Dcom.sun.management.jmxremote.port=12345\
- -Dcom.sun.management.jmxremote.ssl=false\
- -Dcom.sun.management.jmxremote.authenticate=false\
- -Dlogback.configurationFile=/opt/{{ tomcat_name }}/conf/logback.xml
+{{ ansible_managed | comment }}
+
+{% if catalina_opts is defined %}
+export CATALINA_OPTS="
+ -server
+ -Xmx{{ tomcatXmx }}
+ -Xms{{ tomcatXms }}
+{% for opt in catalina_opts %}
+ -{{ opt }}={{ catalina_opts[opt] }}
+{% endfor %}
 "
+{% endif %}

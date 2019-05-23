@@ -22,3 +22,16 @@ postgresql_server_and_port: "localhost:5432"
 postgresql_database: "postgres"
 postgresql_user: "postgres"
 postgresql_password: "postgres"
+
+# catalina_opts
+catalina_opts:
+ Djava.net.preferIPv4Stack: true
+ Djava.net.preferIPv4Addresses: true
+ Dwicket.configuration: deployment
+ Djava.awt.headless: true
+ Djava.security.egd: file:/dev/./urandom
+ Djava.rmi.server.hostname: "{{ ansible_default_ipv4.address }}"
+ Dcom.sun.management.jmxremote.port: 12345
+ Dcom.sun.management.jmxremote.ssl: false
+ Dcom.sun.management.jmxremote.authenticate: false
+ Dlogback.configurationFile: "/opt/{{ tomcat_name }}/conf/logback.xml"
