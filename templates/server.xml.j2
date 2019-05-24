@@ -11,16 +11,9 @@
               description="User database that can be updated and saved"
               factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
               pathname="conf/tomcat-users.xml" />
-    <Resource name="jdbc/{{ jdbc_resource_name }}" auth="Container"
-              type="javax.sql.DataSource"
-              driverClassName="org.postgresql.Driver"
-              url="jdbc:postgresql://{{ postgresql_server_and_port }}/{{ postgresql_database }}?prepareThreshold=0"
-              username="{{ postgresql_user }}"
-              password="{{ postgresql_password }}"
-              maxTotal="20"
-              maxIdle="10"
-              maxWaitMilli="-1"
-              validationQuery="select 1" />
+  {% if tomcat_extra_global_naming_resources not in (None, "") %}
+  {{ tomcat_extra_global_naming_resources }}
+  {% endif %}
   </GlobalNamingResources>
   <Service name="Catalina">
     <Connector port="{{ tomcat_http_port }}" protocol="HTTP/1.1"

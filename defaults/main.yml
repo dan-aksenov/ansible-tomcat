@@ -17,11 +17,25 @@ tomcat_ajp_port: "-1"
 tomcat_ajp_redirect_port: "-1"
 
 # datasource properties
-jdbc_resource_name: "DataSource"
-postgresql_server_and_port: "localhost:5432"
-postgresql_database: "postgres"
-postgresql_user: "postgres"
-postgresql_password: "postgres"
+tomcat_extra_global_naming_resources: |
+ <Resource name="jdbc/datasource_name" auth="Container"
+               type="javax.sql.DataSource"
+               driverClassName="org.postgresql.Driver"
+               url="jdbc:postgresql://host1:6432,host2:6432/database1?prepareThreshold=0&amp;?targetServerType=master"
+               username="user"
+               password="password"
+               maxTotal="200"
+               maxIdle="50"
+               maxWaitMillis="-1"
+               validationInterval="30000"
+               defaultReadOnly="false"
+               testOnBorrow="true"
+               removeAbandonedOnMaintenance="true"
+               removeAbandonedTimeout="60"
+               logAbandoned="true"
+               validationQuery="select 1" />
+
+tomcat_extra_context: <ResourceLink name="jdbc/mapping_target" global="jdbc/mapping_source" type="javax.sql.DataSource" />
 
 # catalina_opts
 catalina_opts:
