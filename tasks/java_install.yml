@@ -2,5 +2,6 @@
 - name: Yum install java
   yum:
     state: latest
-    pkg: [ 'java' ]
+    name: 
+      - java
   when: ansible_pkg_mgr == 'yum'
