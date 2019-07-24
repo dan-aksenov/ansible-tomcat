@@ -8,10 +8,10 @@ After=syslog.target network.target
 Type=forking
 
 Environment=JAVA_HOME=/usr/lib/jvm/jre
-Environment=CATALINA_PID=/opt/{{ tomcat_name }}/temp/tomcat.pid
-Environment=CATALINA_HOME=/opt/{{ tomcat_name }}
-Environment=CATALINA_BASE=/opt/{{ tomcat_name }}
-ExecStart=/opt/{{ tomcat_name }}/bin/startup.sh
+Environment=CATALINA_PID={{ root_dir }}/tomcat/temp/tomcat.pid
+Environment=CATALINA_HOME={{ root_dir }}/tomcat
+Environment=CATALINA_BASE={{ root_dir }}/tomcat
+ExecStart={{ root_dir }}/tomcat/bin/startup.sh
 ExecStop=/bin/kill -15 $MAINPID
 ExecReload=/usr/bin/kill -s HUP $MAINPID
 RemainAfterExit=yes
