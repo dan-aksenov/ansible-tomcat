@@ -34,6 +34,7 @@
     owner: tomcat
     group: tomcat
     state: link
+  when: tcat_dir.stat.isdir is not defined
 
 - name: Create setenv file for tomcat.
   template:
