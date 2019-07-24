@@ -44,6 +44,9 @@
     group: "{{ tomcat_user }}"
     force: yes
     mode: 0644
+  notify:
+    - restart tomcat
+
 
 - name: Create server.xml file for tomcat.
   template:
@@ -53,6 +56,9 @@
     group: "{{ tomcat_user }}"
     force: yes
     mode: 0644
+  notify:
+    - restart tomcat
+
 
 - name: Create context.xml file for tomcat.
   template:
@@ -62,6 +68,9 @@
     group: "{{ tomcat_user }}"
     force: yes
     mode: 0644
+  notify:
+    - restart tomcat
+
 
 - name: Create logback.xml for tomcat.
   template:
@@ -71,6 +80,9 @@
     group: "{{ tomcat_user }}"
     force: yes
     mode: 0644
+  notify:
+    - restart tomcat
+
 
 - name: Create systemd file for tomcat.
   template:
@@ -81,6 +93,9 @@
     backup: yes
     force: yes
     mode: 0644
+  notify:
+    - restart tomcat
+
 
 - name: Add firewall exception. If firewall is on.
   firewalld: port=8080/tcp permanent=true state=enabled immediate=yes
