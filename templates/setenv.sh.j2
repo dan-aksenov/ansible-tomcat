@@ -1,13 +1,13 @@
 {{ ansible_managed | comment }}
 
 {% if catalina_opts is defined %}
-export CATALINA_OPTS="
- -server
- -Xmx{{ tomcatXmx }}
- -Xms{{ tomcatXms }}
- -XX:+UseParallelGC
+export CATALINA_OPTS="\
+ -server\
+ -Xmx{{ tomcatXmx }}\
+ -Xms{{ tomcatXms }}\
+ -XX:+UseParallelGC\
 {% for opt in catalina_opts %}
- -{{ opt }}={{ catalina_opts[opt] }}
+ -{{ opt }}={{ catalina_opts[opt] }}\
 {% endfor %}
 "
 {% endif %}
